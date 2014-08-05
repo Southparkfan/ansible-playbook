@@ -135,7 +135,7 @@ switch( $wgDBname ) {
 		break;
 	case 'wikidemoswiki':
 		require_once( "$IP/extensions/Widgets/Widgets.php" );
-		require_once( "$IP/skins/Erudite/erudite.php" );
+		require_once( "$IP/skins/foreground/foreground.php" );
 		break;
 }
 
