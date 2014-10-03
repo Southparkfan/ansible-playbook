@@ -1,15 +1,15 @@
 server_name static.orain.org upload.orain.org;
 
-root /usr/share/nginx/static.orain.org;
+root /mnt/mediawiki/uploads;
 
 expires 2w;
 
 location ~ ^/.*?/load.php$ {
-	root /usr/share/nginx/.orain.org/w;
+	root /srv/mediawiki/w;
 	expires 3d;
 	include fastcgi_params;
 	fastcgi_param SCRIPT_FILENAME $document_root/load.php;
-	fastcgi_pass unix:/var/run/php5-fpm.sock;
+	fastcgi_pass unix:/var/run/hhvm/sock;
 }
 
 location ~ ^/.*?/images/thumb {
@@ -24,10 +24,10 @@ location /common/dumps {
 }
 
 location /w/thumb.php {
-	root /usr/share/nginx/.orain.org;
+	root /srv/mediawiki;
 	include fastcgi_params;
 	fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-	fastcgi_pass unix:/var/run/php5-fpm.sock;
+	fastcgi_pass unix:/var/run/hhvm/sock;
 }
 
 location @thumb {

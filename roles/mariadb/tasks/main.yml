@@ -1,28 +1,8 @@
----
-- name: Add MariaDB apt key
-  apt_key: url=http://keyserver.ubuntu.com/pks/lookup?op=get&fingerprint=on&search=0xcbcb082a1bb943db
-
-- name: Add MariaDB apt repository
-  apt_repository: repo='deb http://ftp.osuosl.org/pub/mariadb/repo/5.5/debian wheezy main'
-
 - name: Set MariaDB root password
-  shell: "debconf-set-selections <<< 'mysql-server-10.0 mysql-server/root_password password {{mysql_root_password}}'"
-  shell: "debconf-set-selections <<< 'mysql-server-10.0 mysql-server/root_password_again password {{mysql_root_password}}'"
+  command: "debconf-set-selections <<< 'mysql-server-10.0 mysql-server/root_password password {{mysql_root_password}}'"
+  command: "debconf-set-selections <<< 'mysql-server-10.0 mysql-server/root_password_again password {{mysql_root_password}}'"
+  changed_when: False # Never report as changed
 
-- name: Install MariaDB
-  apt: pkg=mariadb-server
-
-## Kudu - 31-08-13 - Comment out DB user creation which doesn't seem to support MariaDB
-# - name: Create a MariaDB user for MediaWiki
-#   mysql_user: login_user=root login_password={{mysql_root_password}}
-#               name={{mw_db_user}} password={{mw_db_password}}
-#               priv=*.*:ALL
-
-- name: Copy my.cnf
-  copy: src=my.cnf dest=/etc/my.cnf
-
-- name: Set firewall rule
-  command: ufw allow from 192.184.92.154 to any port 3306
-  register: ufw_result
-  changed_when: "ufw_result.stdout.startswith('Rule')"
-
+- include: packages.yml
+- include: files.yml
+- include: ufw.yml

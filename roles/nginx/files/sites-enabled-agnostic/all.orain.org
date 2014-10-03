@@ -1,7 +1,8 @@
-root /usr/share/nginx/.orain.org;
+root /srv/mediawiki;
 index index.html index.htm index.php;
 
 location = / {
+	ssi on;
 	return 301 /wiki/;
 }
 
@@ -10,14 +11,11 @@ location ~ \.php {
 	fastcgi_split_path_info ^(.+\.php)(.*)$;
 	try_files $fastcgi_script_name =404;
 	fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-	fastcgi_pass unix:/var/run/php5-fpm.sock;
+	fastcgi_pass unix:/var/run/hhvm/sock;
 }
 
-location ^~ /w/languages   { deny all; }
-location ^~ /w/maintenance { deny all; }
-location ^~ /w/serialized  { deny all; }
-location ~ /.git(/|$)      { deny all; }
-
+location ^~ /w/languages { deny all; } location ^~ /w/maintenance { deny all; } location ^~ /w/serialized { deny all; } 
+location ~ /.git(/|$) { deny all; }
 location ~ ^/wk/(.*) {
 	return 301 /wiki/$1;
 }
@@ -29,6 +27,25 @@ location ~* \.(bmp|gif|jpeg|jpg|png)$ {
 location ^~ /wiki {
 	include fastcgi_params;
 	fastcgi_param SCRIPT_FILENAME $document_root/w/index.php;
-	fastcgi_pass unix:/var/run/php5-fpm.sock;
+	fastcgi_pass unix:/var/run/hhvm/sock;
 }
 
+error_page 404 /404.html;
+location = /404.html {
+	ssi on;
+	root /usr/share/nginx/errorpages;
+}
+error_page 500 /500.html;
+location = /500.html {
+	ssi on;
+	root /usr/share/nginx/errorpages;
+}
+error_page 502 /502.html;
+location = /502.html {
+	ssi on;
+	root /usr/share/nginx/errorpages;
+}
+
+location ~ ^/o/(.*) {
+	return 301 /w/index.php?title=Special:UrlRedirector/$1;
+}

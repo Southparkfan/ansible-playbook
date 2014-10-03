@@ -1,0 +1,17 @@
+- name: Ensure export directories exist
+  command: mkdir -p {{item}}
+  with_items:
+  - /var/mediawiki/uploads
+  - /var/mediawiki/private/uploads
+  changed_when: False # never report as "changed"
+
+- name: 1001:1001 own /var/mediawiki
+  command: chown 1001:1001 /var/mediawiki/ -R
+
+- name: other need x for all /var/mediawiki
+  command: chmod 0775 /var/mediawiki/ -R
+  changed_when: False
+
+- name: Move exports over
+  copy: src=exports dest=/etc/
+  notify: update exports

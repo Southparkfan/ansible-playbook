@@ -11,15 +11,14 @@ install:
 
 before_script:
   # For the syntax check to work we need some fake vars
-  - mkdir /home/travis/build/Orain/orain_private
-  - cp /home/travis/build/Orain/ansible-playbook/.travis.vars.yml /home/travis/build/Orain/orain_private/vars.yml
+  - mkdir /home/travis/build/Orain/private
+  - cp /home/travis/build/Orain/ansible-playbook/.travis.vars.yml /home/travis/build/Orain/private/vars.yml
 
 script:
   # Check playbook syntax
   - sudo ansible-playbook -i production local.yml --syntax-check
   # Check php script syntax
-  - php -l roles/mediawiki/files/LocalSettings.php.j2
-  - php -l roles/mediawiki/files/StartProfiler.php
+  - bash .travis.phplint.sh
 
 notifications:
   irc:

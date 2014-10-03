@@ -14,6 +14,13 @@ On every new pull request or commit, Travis CI will run a series of checks on th
 
 See https://travis-ci.org/Orain/ansible-playbook
 
+New Instances
+----------------
+
+New instances will first require you to install ansible before running the playbook!
+
+> pip install ansible
+
 Changing Ansible stuff
 ----------------
 
@@ -39,12 +46,6 @@ Before making any changes to MediaWiki stuff, make sure the user requesting the 
 ### Deploying new MediaWiki LocalSettings.php
 
 After any change in LocalSettings.php, please make sure the syntax is correct!
-If LocalSettings syntax is incorrect, the ansible-pull will fail.
-
-To check the syntax simply run the following command:
- > php -l roles/mediawiki/files/LocalSettings.php.j2
-
-If you cannot run this on your machine, then submit you change as a branch of the repo and make a pull request! This way, Travis CI will run the validation test for you.
 
 ### Deploying new MediaWiki extensions
 

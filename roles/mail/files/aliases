@@ -1,0 +1,32 @@
+mailer-daemon: postmaster
+postmaster: root
+nobody: root
+hostmaster: root
+webmaster: root
+www: root
+ftp: root
+abuse: root
+noc: root
+security: root
+
+# sysadmin group stuff
+sysadmin: john,addshore
+root: sysadmin
+
+# phase out help!
+help: dusti,john,addshore
+
+# I get shell mail but don't read it so... -John
+johnflewis: john
+
+# nagios
+nagios: john
+
+# addshore
+addshore: addshorewiki@gmail.com
+
+# pingdom notification stuff
+pingdom: john,addshore
+
+# mirror groups
+operations: sysadmin

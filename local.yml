@@ -2,32 +2,52 @@
 # python may need to be installed manually.
 - hosts: all
   vars_files:
-    - ../orain_private/vars.yml
+    - ../private/vars.yml
   roles:
     - common
 
-- hosts: webservers
+- hosts: mediawikiservers
   vars_files:
-    - ../orain_private/vars.yml
+    - ../private/vars.yml
   roles:
+    - hhvm
     - nginx
     - php
     - mediawiki
-
-- hosts: searchservers
-  vars_files:
-    - ../orain_private/vars.yml
-  roles:
-    - elasticsearch
+    - nfs-client
 
 - hosts: dbservers
   vars_files:
-    - ../orain_private/vars.yml
+    - ../private/vars.yml
   roles:
     - mariadb
 
-- hosts: miscservers
+- hosts: monitoringservers
   vars_files:
-    - ../orain_private/vars.yml
+    - ../private/vars.yml
   roles:
     - nagios
+
+- hosts: loadbalancingservers
+  vars_files:
+    - ../private/vars.yml
+  roles:
+    - loadbalancer
+    
+- hosts: staticservers
+  vars_files:
+    - ../private/vars.yml
+  roles:
+    - nfs-server
+    
+- hosts: mailservers
+  vars_files:
+    - ../private/vars.yml
+  roles:
+    - mail
+
+- hosts: redisservers
+  vars_files:
+    - ../private/vars.yml
+  roles:
+    - redis
