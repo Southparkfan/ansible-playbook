@@ -51,3 +51,15 @@
     - ../private/vars.yml
   roles:
     - redis
+
+- hosts: dnsservers
+  vars_files:
+    - ../private/vars.yml
+  roles:
+    - dns
+
+- hosts: gangliaservers
+  vars_files:
+    - ../private/vars.yml
+  roles:
+    - ganglia

@@ -34,9 +34,6 @@ switch( $wgDBname ) {
 		require_once( "$IP/extensions/CustomData/CustomData.php" );
 		require_once( "$IP/extensions/RelatedArticles/RelatedArticles.php" );
 		require_once( "$IP/extensions/Disambiguator/Disambiguator.php" );
-		require_once( "$IP/extensions/DynamicSidebar/DynamicSidebar.php" );
-		$wgDynamicSidebarUseUserpages = true;
-		$wgDynamicSidebarUseGroups = true;
 		require_once( "$IP/extensions/WebChat/WebChat.php" );
 		$wgWebChatServer  = ''; // Not needed due to wgWebChatClient --SPF
 		$wgWebChatChannel = '#allthetropes';
@@ -96,8 +93,9 @@ switch( $wgDBname ) {
 		require_once( "$IP/extensions/DynamicSidebar/DynamicSidebar.php" );
 		require_once( "$IP/extensions/WebChat/WebChat.php" );
 		require_once( "$IP/skins/BlueSky/BlueSky.php" );
-		require_once( "$IP/extensions/WikiForum/WikiForum.php" );
 		require_once( "$IP/extensions/MediaWikiPlayer/MediawikiPlayer.php" );
+		require_once( "$IP/extensions/MwEmbedSupport/MwEmbedSupport.php" );
+                require_once( "$IP/extensions/TimedMediaHandler/TimedMediaHandler.php" );
 		break;
 	case 'grepobotwiki':
 		require_once( "$IP/extensions/Lockdown/Lockdown.php" );
@@ -132,6 +130,9 @@ switch( $wgDBname ) {
 	case 'jossewiki':
 		require_once( "$IP/extensions/Poem/Poem.php" );
 		require_once( "$IP/extensions/TorBlock/TorBlock.php" );
+		break;
+	case 'szkwiki':
+		require_once( "$IP/extensions/Widgets/Widgets.php" );
 		break;
 	case 'religionwiki':
 		$wgHooks['ResourceLoaderRegisterModules'][] = 'lfRemoveCollapsibleNav';

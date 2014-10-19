@@ -5,6 +5,7 @@ prod5
 [mediawikiservers]
 prod4
 prod8
+prod9
 
 [monitoringservers]
 prod6
@@ -17,3 +18,10 @@ prod6
 
 [redisservers]
 prod7
+
+[dnsservers]
+prod6
+prod7
+
+[gangliaservers]
+prod6
