@@ -1,0 +1,44 @@
+- name: Install ansible dependencies
+  raw: apt-get install -y python-apt python-simplejson
+
+- name: Update Apt Cache (on the hour)
+  apt: update_cache=yes cache_valid_time=3600
+
+- name: Install ansible to a consistent version
+  pip: name=ansible version=1.8.2 state=present
+
+- name: Install packages
+  apt: pkg={{item}}
+  with_items:
+    - aptitude
+    - lsof
+    - lynis
+    - rkhunter
+    - sudo
+    - tmux
+    - ufw
+    - zsh
+
+- name: Install packages (latest)
+  apt: pkg={{item}} state=latest
+  with_items:
+    - bash
+    - curl
+    - git
+    - htop
+    - mysql-client # Needed for testing mysql connectivity between instance - Addshore
+    - mosh
+    - mount
+    - nagios-nrpe-server
+    - nano
+    - netcat
+    - openssl
+    - python3
+    - python-software-properties
+    - screen
+    - vim
+    - wget
+    - zip
+
+- name: Remove fail2ban
+  apt: pkg=fail2ban state=absent

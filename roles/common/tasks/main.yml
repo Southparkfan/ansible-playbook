@@ -1,9 +1,0 @@
-- include: packages.yml
-- include: users.yml
-- include: backup.yml
-- include: ufw.yml
-- include: nagios.yml
-- include: files.yml
-- include: cron.yml
-- include: ganglia.yml
-- include: git.yml

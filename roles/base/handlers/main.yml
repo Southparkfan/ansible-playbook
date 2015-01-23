@@ -1,0 +1,18 @@
+---
+- name: Reload ferm
+  service: name=ferm state=reloaded
+
+- name: Restart nrpe
+  service: name=nagios-nrpe-server state=restarted
+
+- name: Restart ganglia-monitor
+  service: name=ganglia-monitor state=restarted
+
+- name: Reload ssh
+  service: name=ssh state=reloaded
+
+- name: Restart postfix
+  service: name=postfix state=restarted
+
+- name: Reload aliases
+  command: newaliases

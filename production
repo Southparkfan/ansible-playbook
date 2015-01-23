@@ -1,10 +1,11 @@
 [dbservers]
-prod3
 prod5
+prod12
 
 [mediawikiservers]
 prod8
 prod9
+prod11
 
 [monitoringservers]
 prod6
@@ -25,5 +26,5 @@ prod7
 [gangliaservers]
 prod6
 
-[elasticsearchservers]
+[loadbalancerservers]
 prod10

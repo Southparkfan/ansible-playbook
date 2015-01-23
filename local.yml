@@ -4,7 +4,8 @@
   vars_files:
     - ../private/vars.yml
   roles:
-    - common
+    - base
+    - dsh
 
 - hosts: mediawikiservers
   vars_files:
@@ -62,3 +63,9 @@
     - ../private/vars.yml
   roles:
     - elasticsearch
+
+- hosts: loadbalancerservers
+  vars_files:
+    - ../private/vars.yml
+  roles:
+    - loadbalancer

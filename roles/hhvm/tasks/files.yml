@@ -1,11 +1,14 @@
 - name: Copy HHVM fastcgi script to init.d
-  copy: src="hhvm-start" dest=/etc/init.d/hhvm-start owner=root group=root mode=770
+  copy: src="hhvm" dest=/etc/init.d/hhvm owner=root group=root mode=770
 
-- name: Add hhvm-start to boot
-  command: update-rc.d hhvm-start defaults 98
+- name: Add hhvm to boot
+  command: update-rc.d hhvm defaults 98
   register: update_rc_hhvm
   failed_when: "'error' in update_rc_hhvm.stdout"
   changed_when: False # never report as "changed"
 
-- name: Copy config.hdf over
-  template: src="config.hdf" dest=/etc/hhvm/config.hdf owner=root group=root mode=644
+- name: Copy hhvm.ini over
+  template: src="hhvm.ini" dest=/etc/hhvm/hhvm.ini owner=root group=root mode=644
+
+- name: Copy logrotate
+  copy: src="./logrotate.d/hhvm" dest=/etc/logrotate.d/hhvm

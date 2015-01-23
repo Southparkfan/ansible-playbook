@@ -1,3 +1,4 @@
+# standard stuff
 mailer-daemon: postmaster
 postmaster: root
 nobody: root
@@ -9,24 +10,31 @@ abuse: root
 noc: root
 security: root
 
-# sysadmin group stuff
-sysadmin: john,addshore
+# sysadmin group
+sysadmin: addshore,southparkfan223@hotmail.com
 root: sysadmin
+operations: sysadmin
 
-# phase out help!
-help: dusti,john,addshore
+# paypal for paypal
+paypal: dusti,addshore
 
-# I get shell mail but don't read it so... -John
-johnflewis: john
+# accounts for umbrella of other stuff
+accounts: dusti,addshore
 
 # nagios
-nagios: john
+nagios: sysadmin
 
-# addshore
+# addshore - skip server side mailbox
 addshore: addshorewiki@gmail.com
 
-# pingdom notification stuff
-pingdom: john,addshore
+# GlobalSign auth
+admin: accounts
 
-# mirror groups
-operations: sysadmin
+# staff
+staff: addshore,dusti,southparkfan223@hotmail.com,arcane@live.com,kudu.py@gmail.com
+
+# forward dusti@ to dusti's email temporarily
+dusti: dahowe@bsugmail.net
+
+# help for old accounts
+help: dusti
